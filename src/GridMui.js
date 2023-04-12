@@ -91,14 +91,23 @@ function EditToolbar(props) {
         {cellMode === "edit" ? "Save" : "Edit"}
       </Button>
       <Button
-        onClick={handleCancel}
-        onMouseDown={handleMouseDown}
-        disabled={cellMode === "view"}
-        variant="outlined"
-        sx={{ ml: 1 }}
-      >
-        Cancel
-      </Button>
+  onClick={handleCancel}
+  onMouseDown={handleMouseDown}
+  disabled={cellMode === "view"}
+  variant="outlined"
+  sx={{
+    ml: 1,
+    backgroundColor: '#3B82F6',
+    color: '#fff',
+    fontWeight: 'bold', // ajout de la propriété fontWeight
+    '&:hover': {
+      backgroundColor: '#2563EB',
+    },
+  }}
+>
+  Cancel
+</Button>
+
     </Box>
   );
 }
@@ -155,10 +164,11 @@ export default function StartEditButtonGrid() {
         setRows(jsonArr);
       });
   }, []);
+/*bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200*/
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
+  <div className="bg-gradient-to-r from-gray-100 to-gray-300" style={{ height: 800, width: "100%" }}>
+  <DataGrid
         rows={rows}
         columns={columns}
         onCellKeyDown={handleCellKeyDown}
@@ -196,4 +206,6 @@ const columns = [
     type: "text",
     editable: true,
   },
+  {field: "prices", headerName: "prices", width: 180, editable: false },
+  {field: "images", headerName: "images", width: 180, editable: false }
 ];
