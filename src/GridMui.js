@@ -34,7 +34,7 @@ function EditToolbar(props) {
       const JSONtoSend = JSON.stringify(rowUpdated);
 
       // envoyer le JSON au backend (à implementer)
-      fetch("http://localhost/restAPI/updateItem.php", {
+      fetch("http://localhost:8888/restAPI_CRUD_PHP/", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: JSONtoSend,
       })
