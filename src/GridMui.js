@@ -26,23 +26,23 @@ function EditToolbar(props) {
         [id]: { ...cellModesModel[id], [field]: { mode: GridCellModes.View } },
       });
 
-      // recuperer les données à modifier et les envoyer au Backend
+      // recuperer les donnés à modifier et les envoyer au Backend
       const rowUpdated = apiRef.current.getRowWithUpdatedValues(id, field);
-      console.log(rowUpdated);
 
       // creer le JSON
       const JSONtoSend = JSON.stringify(rowUpdated);
 
       // envoyer le JSON au backend (à implementer)
-      fetch("http://localhost/restAPI/updateItem.php", {
+      fetch("http://localhost:8888/restAPI_CRUD_PHP/update_item.php", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: JSONtoSend,
       })
         .then((response) => {
+          console.log(response);
           return response.json();
         })
         .then((json) => {
-          alert("le serveur à repondu: --->" + json);
+          alert("le serveur à repondu: --->" + json.message);
         })
         .catch((error) => {
           alert("erreur du serveur: " + error);
@@ -145,18 +145,14 @@ export default function StartEditButtonGrid() {
   );
 
   React.useEffect(() => {
-    fetch("http://localhost/restAPI/getItems.php", {
+    fetch("http://localhost:8888/restAPI_CRUD_PHP/getItems.php", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
     })
       .then((response) => {
-        console.log(response.json);
         return response.json();
       })
       .then((jsonArr) => {
         setRows(jsonArr);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }, []);
 
@@ -192,7 +188,7 @@ export default function StartEditButtonGrid() {
 
 const columns = [
   { field: "id", headerName: "Id Item", width: 180, editable: false },
-  { field: "nom", headerName: "Name", type: "text", editable: true },
+  { field: "name", headerName: "Name", type: "text", editable: true },
   {
     field: "description",
     headerName: "Description",
