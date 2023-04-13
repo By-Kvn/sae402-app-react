@@ -1,27 +1,15 @@
 import FormSending from './FormSending';
 import "./App.css";
-import BasicEditingGrid  from './GridMui.js';
-function App() 
-{
+import BasicEditingGrid from './GridMui.js';
+import Home from './home.js';
 
-    return (
-        <BasicEditingGrid/>
-    );
+function App() {
+  return (
+    <div>
+      <Home />
+      <BasicEditingGrid />
+    </div>
+  );
 }
-  
+
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

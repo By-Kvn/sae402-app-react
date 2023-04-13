@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { DataGrid, GridCellModes, useGridApiRef } from "@mui/x-data-grid";
+import TextField from "@mui/material/TextField";
+
 
 function EditToolbar(props) {
   const {
@@ -88,7 +90,7 @@ function EditToolbar(props) {
         disabled={!selectedCellParams}
         variant="outlined"
       >
-        {cellMode === "edit" ? "Save" : "Edit"}
+        {cellMode === "edit" ? "Save" : "Edit :"}
       </Button>
       <Button
   onClick={handleCancel}
@@ -107,7 +109,41 @@ function EditToolbar(props) {
 >
   Cancel
 </Button>
-
+<Button
+  onClick={handleCancel}
+  onMouseDown={handleMouseDown}
+  disabled={cellMode === "view"}
+  variant="outlined"
+  sx={{
+    ml: 1,
+    backgroundColor: '#3B82F6',
+    color: '#fff',
+    fontWeight: 'bold', // ajout de la propriété fontWeight
+    '&:hover': {
+      backgroundColor: '#2563EB',
+    },
+  }}
+>
+  ADD
+</Button>
+<Button
+  onClick={handleCancel}
+  onMouseDown={handleMouseDown}
+  disabled={cellMode === "view"}
+  variant="outlined"
+  sx={{
+    ml: 1,
+    backgroundColor: '#FF0000',
+    color: '#fff',
+    fontWeight: 'bold', // ajout de la propriété fontWeight
+    '&:hover': {
+      backgroundColor: '#00FF00',
+    },
+  }}
+>
+  DELETE
+</Button>
+<TextField label="Search" variant="outlined" sx={{ ml: "auto" }} />
     </Box>
   );
 }
@@ -152,7 +188,7 @@ export default function StartEditButtonGrid() {
     },
     [cellMode]
   );
-
+  // Récuperer les données deo-puis cette adresse ci dessous
   React.useEffect(() => {
     fetch("http://localhost:8888/restAPI_CRUD_PHP/getItems.php", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -164,10 +200,12 @@ export default function StartEditButtonGrid() {
         setRows(jsonArr);
       });
   }, []);
+
 /*bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200*/
 
+// UTILISATION DE TAILWIND CSS 
   return (
-  <div className="bg-gradient-to-r from-gray-100 to-gray-300" style={{ height: 800, width: "100%" }}>
+  <div className="bg-gradient-to-r from-violet-300 to-violet-400" style={{ height: 800, width: "100%" }}>
   <DataGrid
         rows={rows}
         columns={columns}
@@ -195,7 +233,7 @@ export default function StartEditButtonGrid() {
     </div>
   );
 }
-
+// variable représentant les colonnes de notre interface
 const columns = [
   { field: "id", headerName: "Id Item", width: 180, editable: false },
   { field: "name", headerName: "Name", type: "text", editable: true },
@@ -206,6 +244,6 @@ const columns = [
     type: "text",
     editable: true,
   },
-  {field: "prices", headerName: "prices", width: 180, editable: false },
-  {field: "images", headerName: "images", width: 180, editable: false }
+  {field: "prices", headerName: "prices", width: 180, editable: true },
+  {field: "images", headerName: "images", width: 180, editable: true }
 ];
