@@ -116,11 +116,11 @@ function EditToolbar(props) {
   variant="outlined"
   sx={{
     ml: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#00FF00',
     color: '#fff',
     fontWeight: 'bold', // ajout de la propriété fontWeight
     '&:hover': {
-      backgroundColor: '#2563EB',
+      backgroundColor: '#00FF00',
     },
   }}
 >
@@ -137,7 +137,7 @@ function EditToolbar(props) {
     color: '#fff',
     fontWeight: 'bold', // ajout de la propriété fontWeight
     '&:hover': {
-      backgroundColor: '#00FF00',
+      backgroundColor: '#2563EB',
     },
   }}
 >
